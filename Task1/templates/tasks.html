@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block body %}
+<div class="card">
+  <div class="card-header" >
+      <div class="text-center mt-3">
+        Tasks
+      </div>
+  </div>
+  <div class="card-body">
+
+        {% for task in tasks %}
+      <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <p class="fs-4">{{ task.title }}</p>
+            {%if task.completed == True %}
+                 <p class="text-success">Completed</p>
+            {%else%}
+                <p class="text-danger">Not Completed</p>
+            {%endif%}
+      </div>
+        {% endfor %}
+
+  </div>
+</div>
+{% endblock %}
