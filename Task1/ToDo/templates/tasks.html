@@ -11,12 +11,22 @@
 
         {% for task in tasks %}
       <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
-            <p class="fs-4">{{ task.title }}</p>
+            <div class="card-header">
+            <h3>{{task.title}}</h3>
+
+            </div>
+          <div class="card-body">
+              <p>{{task.content}}</p>
             {%if task.completed == True %}
                  <p class="text-success">Completed</p>
             {%else%}
                 <p class="text-danger">Not Completed</p>
             {%endif%}
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-outline-primary" href="{{url_for('tasks.updateTask', taskId = task.id)}}">Edit</a>
+            <a class="btn btn-outline-danger" href="{{url_for('tasks.deleteTask', taskId = task.id)}}">Delete</a>
+        </div>
       </div>
         {% endfor %}
 

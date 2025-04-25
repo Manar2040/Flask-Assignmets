@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid d-flex align-items-center">
+    <span class="navbar-brand mb-0 h1">To Do List</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav d-flex flex-row ms-3">
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('main.index')}}">Home</a>
+        </li>
+        {%if current_user.is_authenticated %}
+           <li class="nav-item">
+               <a class="nav-link" href="{{url_for('tasks.get_tasks')}}">My Tasks</a>
+           </li>
+        {%endif%}
+      </ul>
+      <div class="d-flex">
+        {% if current_user.is_authenticated %}
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  My Account
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{{url_for('tasks.addTask')}}">Add Task</a></li>
+            <li><a class="dropdown-item" href="{{url_for('users.logout')}}">Logout</a></li>
+          </ul>
+        </div>
+        {%else%}
+        <a href="{{url_for('users.login')}}"><button class="btn btn-outline-primary me-1"> Login </button></a>
+        <a href="{{url_for('users.register')}}"> <button class="btn btn-primary me-1"> Sign Up </button></a>
+        {%endif%}
+
+      </div>
+    </div>
+    </div>
+
+</nav>
